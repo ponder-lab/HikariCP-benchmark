@@ -160,7 +160,7 @@ public class SpikeLoadTest
       StubStatement.setExecuteDelayMs(2L);
 
       Timer timer = new Timer(true);
-      ExecutorService executor = Executors.newFixedThreadPool(50); /*, new ThreadFactory() {
+      ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor(); /*, new ThreadFactory() {
          @Override
          public Thread newThread(Runnable r)
          {
@@ -344,7 +344,7 @@ public class SpikeLoadTest
    private long warmupPool() throws InterruptedException
    {
       final LongAdder j = new LongAdder();
-      ExecutorService executor = Executors.newFixedThreadPool(10);
+      ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor();
       for (int k = 0; k < 10; k++) {
          executor.execute(() -> {
             for (int i = 0; i < 100_000; i++) {
