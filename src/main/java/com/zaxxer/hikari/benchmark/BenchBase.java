@@ -329,7 +329,7 @@ public class BenchBase
         vibur.setAcquireRetryAttempts(0);
         vibur.setReducerTimeIntervalInSeconds(0);
         vibur.setUseNetworkTimeout(true);
-        vibur.setNetworkTimeoutExecutor(Executors.newFixedThreadPool(1));
+        vibur.setNetworkTimeoutExecutor(Executors.newVirtualThreadPerTaskExecutor());
         vibur.setClearSQLWarnings(true);
         vibur.setResetDefaultsAfterUse(true);
         vibur.start();
